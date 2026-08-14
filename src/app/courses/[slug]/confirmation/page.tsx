@@ -78,8 +78,8 @@ export default function OrderConfirmationPage() {
               <MessageCircle className="h-5 w-5" />
             </div>
             <div>
-              <h3 className="text-sm font-bold text-emerald-950">Official WhatsApp Contact</h3>
-              <p className="text-xs text-emerald-800 font-mono font-semibold">+234 816 512 7497</p>
+              <h3 className="text-sm font-bold text-emerald-950">Official Student Support</h3>
+              <p className="text-xs text-emerald-700">Direct WhatsApp Onboarding &amp; Access</p>
             </div>
           </div>
           <a

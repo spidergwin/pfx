@@ -61,9 +61,8 @@ export default function CheckoutPage() {
             <ArrowLeft className="h-5 w-5" />
             Back to Course
           </Link>
-          <span className="text-xs font-bold text-[#ED3C52] uppercase tracking-wider flex items-center gap-1.5">
-            <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            Direct WhatsApp Enrollment
+          <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+            Course Checkout
           </span>
         </div>
       </header>
@@ -151,15 +150,15 @@ export default function CheckoutPage() {
             </div>
           </div>
 
-          {/* WhatsApp Direct Notice Card */}
-          <div className="rounded-2xl bg-emerald-50 p-4 border border-emerald-200 flex items-start gap-3">
-            <div className="h-8 w-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 mt-0.5">
-              <MessageCircle className="h-4 w-4" />
+          {/* Direct Support & Verification Notice */}
+          <div className="rounded-2xl bg-slate-50 p-4 border border-slate-200 flex items-start gap-3">
+            <div className="h-8 w-8 rounded-xl bg-slate-800 text-white flex items-center justify-center shrink-0 mt-0.5">
+              <ShieldCheck className="h-4 w-4" />
             </div>
-            <div className="text-xs text-emerald-950 space-y-1 leading-relaxed">
-              <p className="font-bold">Instant WhatsApp Support &amp; Verification</p>
-              <p className="text-[11px] text-emerald-800">
-                Clicking the button below opens an official chat with <strong>New Forex Industry (+2348165127497)</strong> to complete payment via your preferred method and get immediate course access.
+            <div className="text-xs text-slate-700 space-y-1 leading-relaxed">
+              <p className="font-bold text-[#1E0306]">Direct Verification &amp; Instant Access</p>
+              <p className="text-[11px] text-slate-500">
+                Clicking the button below opens official student onboarding to confirm your preferred payment method and receive immediate course access.
               </p>
             </div>
           </div>
@@ -170,7 +169,7 @@ export default function CheckoutPage() {
             </div>
           )}
 
-          {/* WhatsApp Primary Button */}
+          {/* Primary Action Button */}
           <button
             type="submit"
             className="w-full flex items-center justify-center gap-2.5 rounded-2xl bg-[#25D366] hover:bg-emerald-600 py-4 text-base font-extrabold text-white shadow-xl shadow-emerald-500/20 transition button-glow"

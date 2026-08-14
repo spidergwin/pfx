@@ -34,13 +34,13 @@ export default function TermsPage() {
 
           <section className="space-y-2">
             <h2 className="text-base font-bold text-[#1E0306]">3. Course Access &amp; Delivery</h2>
-            <p>Upon successful payment confirmation via our official WhatsApp channel, course materials will be delivered to the email address provided during checkout. NFI Academy grants you a personal, non-transferable, lifetime licence to access the course content for your own private educational use.</p>
+            <p>Upon successful payment confirmation via our official onboarding channel, course materials will be delivered to the email address provided during checkout. NFI Academy grants you a personal, non-transferable, lifetime licence to access the course content for your own private educational use.</p>
             <p>You may not redistribute, resell, share, or publicly post any course materials in whole or in part.</p>
           </section>
 
           <section className="space-y-2">
             <h2 className="text-base font-bold text-[#1E0306]">4. Refund Policy</h2>
-            <p>Due to the digital nature of the course content, all sales are <strong>final and non-refundable</strong> once course access has been delivered to your email. If you have not received your course access email within 24 hours of payment, please contact us immediately on WhatsApp (+2348165127497).</p>
+            <p>Due to the digital nature of the course content, all sales are <strong>final and non-refundable</strong> once course access has been delivered to your email. If you have not received your course access email within 24 hours of payment, please contact our support team immediately.</p>
           </section>
 
           <section className="space-y-2">
@@ -55,7 +55,7 @@ export default function TermsPage() {
 
           <section className="space-y-2">
             <h2 className="text-base font-bold text-[#1E0306]">7. Contact Us</h2>
-            <p>For any questions regarding these Terms, please contact us via our official WhatsApp line: +234 816 512 7497.</p>
+            <p>For any questions regarding these Terms, please contact our official student support team via the academy website or our official communication channels.</p>
           </section>
         </div>
       </main>
