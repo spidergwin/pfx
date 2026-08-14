@@ -1,16 +1,14 @@
 "use client";
 
-import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
+import { Suspense } from "react";
+import { TopProgressBar } from "@/components/TopProgressBar";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <ProgressBar
-        height="3px"
-        color="#ED3C52"
-        options={{ showSpinner: false }}
-        shallowRouting
-      />
+      <Suspense fallback={null}>
+        <TopProgressBar />
+      </Suspense>
       {children}
     </>
   );
