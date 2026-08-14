@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { ReviewsCarousel } from "@/components/ReviewsCarousel";
 import { PFX_COURSE, PFX_REVIEWS, FAQ_ITEMS } from "@/lib/data";
 import {
   Star,
@@ -229,6 +230,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* AUTO-SCROLLING STUDENT REVIEWS & TESTIMONIALS */}
+      <ReviewsCarousel />
 
       {/* FAQ SECTION */}
       <section className="py-20 bg-white">
