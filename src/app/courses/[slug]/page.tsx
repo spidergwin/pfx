@@ -16,14 +16,12 @@ import {
   PlayCircle,
   Lock,
   ArrowRight,
-  ShieldCheck,
   Check,
 } from "lucide-react";
 
 export default function CourseDetailPage() {
   const params = useParams();
   const router = useRouter();
-  const slug = (params?.slug as string) || "prince-of-forex-masterclass";
 
   const course = PFX_COURSE;
   const [activeTab, setActiveTab] = useState<"about" | "lessons" | "questions">("about");
@@ -33,7 +31,7 @@ export default function CourseDetailPage() {
     <div className="min-h-screen bg-slate-50 text-slate-900 pb-24 md:pb-16">
       <Navbar />
 
-      {/* TOP HEADER BANNER (Dark Burgundy #1E0306 matching clone) */}
+      {/* TOP HEADER BANNER */}
       <section className="relative w-full bg-[#1E0306] text-white py-8 md:py-12 px-4 md:px-8 border-b border-rose-950">
         <div className="mx-auto max-w-6xl relative z-10 space-y-3">
           <div className="flex items-center justify-between">
@@ -42,7 +40,7 @@ export default function CourseDetailPage() {
                 Bestseller
               </span>
               <span className="rounded-md bg-white/10 px-2.5 py-0.5 text-xs font-bold text-white">
-                PFX Masterclass
+                NFI Masterclass
               </span>
             </div>
             <button
@@ -72,9 +70,9 @@ export default function CourseDetailPage() {
         </div>
       </section>
 
-      {/* MAIN CONTAINER: 2-Column Desktop Split, 1-Column Mobile */}
+      {/* MAIN CONTAINER */}
       <div className="mx-auto max-w-6xl px-4 md:px-8 py-6 md:py-10 grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-        {/* LEFT COLUMN (65% on Desktop): Tabs & Course Content Cards */}
+        {/* LEFT COLUMN */}
         <div className="md:col-span-7 lg:col-span-8 space-y-6">
           {/* TABS NAVIGATION */}
           <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
@@ -169,7 +167,7 @@ export default function CourseDetailPage() {
                     Shareable Certificate for LinkedIn
                   </h3>
                   <p className="text-xs text-slate-500">
-                    Receive an official Prince of Forex (PFX) Certificate upon course completion.
+                    Receive an official New Forex Industry (NFI) Certificate upon course completion.
                   </p>
                 </div>
                 <div className="h-10 w-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold">
@@ -217,18 +215,18 @@ export default function CourseDetailPage() {
               <BookOpen className="mx-auto h-10 w-10 text-slate-300" />
               <h3 className="text-base font-bold text-[#1E0306]">Student Q&A Forum</h3>
               <p className="text-xs text-slate-500">
-                Enrolled PFX students can post trading questions directly inside the lesson portal.
+                Enrolled NFI students can post trading questions directly inside the lesson portal.
               </p>
             </div>
           )}
         </div>
 
-        {/* RIGHT COLUMN (35% on Desktop): Fixed Sticky Purchase Widget Card */}
+        {/* RIGHT COLUMN */}
         <div className="hidden md:block md:col-span-5 lg:col-span-4 sticky top-24">
           <div className="rounded-3xl bg-white p-6 shadow-xl border border-slate-200 space-y-6">
             <div className="rounded-2xl bg-[#1E0306] p-6 text-white text-center relative overflow-hidden">
               <div className="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-[#ED3C52] text-white font-black text-2xl mb-2 shadow-lg">
-                PFX
+                NFI
               </div>
               <h3 className="text-sm font-bold">{course.title}</h3>
             </div>
@@ -239,12 +237,12 @@ export default function CourseDetailPage() {
                 <span className="text-3xl font-black text-[#1E0306]">${course.price.toFixed(2)}</span>
                 <span className="text-sm text-slate-400 line-through">${course.originalPrice.toFixed(2)}</span>
                 <span className="rounded-md bg-rose-100 px-2 py-0.5 text-xs font-bold text-[#ED3C52]">
-                  33% OFF
+                  37% OFF
                 </span>
               </div>
               <div className="text-xs text-[#ED3C52] font-bold flex items-center gap-1">
                 <Clock className="h-3.5 w-3.5" />
-                1 day left at this price!
+                Limited offer at this price!
               </div>
             </div>
 
@@ -252,7 +250,7 @@ export default function CourseDetailPage() {
               href={`/courses/${course.slug}/checkout`}
               className="w-full flex items-center justify-center gap-2 rounded-2xl bg-[#ED3C52] hover:bg-rose-600 py-4 text-sm font-extrabold text-white shadow-xl transition button-glow"
             >
-              Buy Now
+              Enroll Now (${course.price.toFixed(0)})
               <ArrowRight className="h-4 w-4" />
             </Link>
 
@@ -283,7 +281,7 @@ export default function CourseDetailPage() {
         </div>
       </div>
 
-      {/* STICKY BOTTOM PURCHASING BAR (For Mobile Viewports < md) */}
+      {/* STICKY BOTTOM PURCHASING BAR */}
       <div className="md:hidden fixed bottom-0 inset-x-0 z-40 bg-white border-t border-slate-200 shadow-2xl p-4">
         <div className="flex items-center justify-between">
           <div>
@@ -294,7 +292,7 @@ export default function CourseDetailPage() {
             </div>
             <div className="text-[10px] text-[#ED3C52] font-bold flex items-center gap-1">
               <Clock className="h-3 w-3" />
-              1 day left at this price!
+              Limited offer at this price!
             </div>
           </div>
 
@@ -302,7 +300,7 @@ export default function CourseDetailPage() {
             href={`/courses/${course.slug}/checkout`}
             className="flex items-center gap-2 rounded-xl bg-[#ED3C52] hover:bg-rose-600 px-7 py-3.5 text-xs font-extrabold text-white shadow-lg transition button-glow"
           >
-            Buy Now
+            Enroll (${course.price.toFixed(0)})
           </Link>
         </div>
       </div>

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { Calculator, ShieldCheck, RefreshCw, Info, ArrowRight } from "lucide-react";
+import { Calculator, RefreshCw, Info } from "lucide-react";
 
 export default function LotSizeCalculatorPage() {
   const [currency, setCurrency] = useState("USD");
@@ -41,7 +41,7 @@ export default function LotSizeCalculatorPage() {
         <div className="mx-auto max-w-3xl space-y-3 relative z-10">
           <div className="inline-flex items-center gap-2 rounded-full bg-rose-500/20 px-4 py-1 text-xs font-extrabold uppercase tracking-widest text-[#ED3C52] border border-rose-500/30">
             <Calculator className="h-3.5 w-3.5" />
-            Official PFX Risk Tool
+            Official NFI Risk Tool
           </div>
           <h1 className="text-3xl md:text-5xl font-black">
             Forex <span className="text-[#ED3C52]">Lot Size Calculator</span>
@@ -137,7 +137,7 @@ export default function LotSizeCalculatorPage() {
             <div className="rounded-2xl bg-rose-50 p-4 border border-rose-100 flex items-start gap-3 text-xs text-slate-700">
               <Info className="h-5 w-5 text-[#ED3C52] shrink-0 mt-0.5" />
               <p>
-                <strong>The PFX Golden Rule:</strong> Never risk more than 1% to 2% of your capital per trade. Proper lot sizing eliminates emotional anxiety during market volatility.{" "}
+                <strong>The NFI Golden Rule:</strong> Never risk more than 1% to 2% of your capital per trade. Proper lot sizing eliminates emotional anxiety during market volatility.{" "}
                 <span className="text-slate-500 italic">Note: Pip values for JPY and commodity pairs fluctuate with exchange rates — verify with your broker.</span>
               </p>
             </div>

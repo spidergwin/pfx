@@ -65,9 +65,9 @@ export default function OrderConfirmationPage() {
           <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-emerald-500 text-white shadow-xl shadow-emerald-500/20">
             <CheckCircle className="h-10 w-10" />
           </div>
-          <h1 className="text-2xl font-black text-[#1E0306]">PFX Academy Enrollment</h1>
+          <h1 className="text-2xl font-black text-[#1E0306]">NFI Academy Enrollment</h1>
           <p className="text-xs font-semibold text-slate-600 max-w-xs mx-auto">
-            Connect directly with Prince of Forex on WhatsApp to get immediate course access.
+            Connect directly with New Forex Industry on WhatsApp to get immediate course access.
           </p>
         </div>
 
@@ -84,7 +84,7 @@ export default function OrderConfirmationPage() {
           </div>
           <a
             href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-              `Hello Prince of Forex (PFX)! I am ready to access the ${course.title}.`
+              `Hello New Forex Industry (NFI)! I am ready to access the ${course.title}.`
             )}`}
             target="_blank"
             rel="noopener noreferrer"
@@ -98,7 +98,7 @@ export default function OrderConfirmationPage() {
         {/* Course Summary */}
         <div className="rounded-2xl bg-white p-6 shadow-sm border border-slate-200 space-y-4">
           <div className="inline-flex items-center justify-center h-14 w-14 rounded-xl bg-[#1E0306] text-amber-400 font-black text-xl shadow-md">
-            PFX
+            NFI
           </div>
           <h2 className="text-base font-bold text-[#1E0306]">{course.title}</h2>
           <div className="grid grid-cols-4 gap-2 pt-3 border-t border-slate-100 text-center">
@@ -130,7 +130,7 @@ export default function OrderConfirmationPage() {
             <div>
               <h3 className="text-sm font-extrabold text-[#1E0306]">Stay in the loop 📈</h3>
               <p className="text-xs text-slate-600 leading-relaxed mt-0.5">
-                Get free forex tips, market updates, and price action breakdowns from Prince of Forex delivered to your inbox via Resend.
+                Get free forex tips, market updates, and price action breakdowns from New Forex Industry delivered to your inbox via Resend.
               </p>
             </div>
           </div>
@@ -138,7 +138,7 @@ export default function OrderConfirmationPage() {
           {newsletterStatus === "done" ? (
             <div className="flex items-center gap-2 text-xs font-bold text-emerald-700 bg-emerald-50 rounded-xl px-4 py-2.5 border border-emerald-200">
               <CheckCircle className="h-4 w-4 shrink-0" />
-              You're subscribed! Watch your inbox for PFX market tips.
+              You're subscribed! Watch your inbox for NFI market tips.
             </div>
           ) : (
             <div className="space-y-2.5">
@@ -156,7 +156,7 @@ export default function OrderConfirmationPage() {
                   onChange={(e) => setNewsletterChecked(e.target.checked)}
                   className="rounded border-rose-300 accent-[#ED3C52]"
                 />
-                Yes, send me free forex tips &amp; market updates from PFX
+                Yes, send me free forex tips &amp; market updates from NFI
               </label>
               <button
                 onClick={handleNewsletterSubscribe}
@@ -166,7 +166,7 @@ export default function OrderConfirmationPage() {
                 {newsletterStatus === "loading" ? (
                   <Loader2 className="h-4 w-4 animate-spin" />
                 ) : (
-                  "Subscribe to PFX Newsletter"
+                  "Subscribe to NFI Newsletter"
                 )}
               </button>
               {newsletterStatus === "error" && (
@@ -191,7 +191,7 @@ export default function OrderConfirmationPage() {
             </button>
             <a
               href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-                `Hello Prince of Forex, I have a question about the academy.`
+                `Hello New Forex Industry, I have a question about the academy.`
               )}`}
               target="_blank"
               rel="noopener noreferrer"

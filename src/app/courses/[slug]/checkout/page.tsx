@@ -17,7 +17,6 @@ import {
 export default function CheckoutPage() {
   const params = useParams();
   const router = useRouter();
-  const slug = (params?.slug as string) || "prince-of-forex-masterclass";
   const course = PFX_COURSE;
 
   const [fullName, setFullName] = useState("");
@@ -36,7 +35,7 @@ export default function CheckoutPage() {
     setErrorMessage(null);
 
     const message = encodeURIComponent(
-      `Hello Prince of Forex (PFX) Academy! 👋\n\n` +
+      `Hello New Forex Industry (NFI) Academy! 👋\n\n` +
       `I would like to enroll in the *${course.title}*.\n\n` +
       `📌 *Order Details:*\n` +
       `• *Course:* ${course.title}\n` +
@@ -47,8 +46,6 @@ export default function CheckoutPage() {
     );
 
     const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
-
-    // Open WhatsApp in new tab or direct window
     window.open(whatsappUrl, "_blank", "noopener,noreferrer");
   };
 
@@ -75,7 +72,7 @@ export default function CheckoutPage() {
         {/* Purchased Course Item Card */}
         <div className="rounded-2xl bg-white p-5 shadow-sm border border-slate-200 flex items-center gap-4">
           <div className="h-14 w-14 shrink-0 rounded-xl bg-[#1E0306] text-amber-400 font-black text-lg flex items-center justify-center shadow-md">
-            PFX
+            NFI
           </div>
           <div>
             <h2 className="text-sm font-bold text-[#1E0306]">{course.title}</h2>
@@ -105,7 +102,7 @@ export default function CheckoutPage() {
                 <User className="absolute left-3.5 top-3 h-4 w-4 text-slate-400" />
                 <input
                   type="text"
-                  placeholder="e.g. Prince / Alex Vance"
+                  placeholder="e.g. Alex Vance"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   className="w-full rounded-xl border border-slate-200 pl-10 pr-4 py-2.5 text-sm focus:border-[#ED3C52] focus:outline-none"
@@ -123,7 +120,7 @@ export default function CheckoutPage() {
                 <input
                   type="email"
                   required
-                  placeholder="student@princeofforex.com"
+                  placeholder="student@newforexindustry.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full rounded-xl border border-slate-200 pl-10 pr-4 py-2.5 text-sm focus:border-[#ED3C52] focus:outline-none"
@@ -162,7 +159,7 @@ export default function CheckoutPage() {
             <div className="text-xs text-emerald-950 space-y-1 leading-relaxed">
               <p className="font-bold">Instant WhatsApp Support &amp; Verification</p>
               <p className="text-[11px] text-emerald-800">
-                Clicking the button below opens an official chat with <strong>Prince of Forex (+2348165127497)</strong> to complete payment via your preferred method and get immediate course access.
+                Clicking the button below opens an official chat with <strong>New Forex Industry (+2348165127497)</strong> to complete payment via your preferred method and get immediate course access.
               </p>
             </div>
           </div>

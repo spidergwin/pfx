@@ -2,9 +2,12 @@ import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { BLOG_POSTS } from "@/lib/data";
-import { ArrowRight, Calendar, User, Crown } from "lucide-react";
+import { ArrowRight, Calendar, User, TrendingUp } from "lucide-react";
+import { PFX_COURSE } from "@/lib/data";
 
 export default function BlogPage() {
+  const course = PFX_COURSE;
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
       <Navbar />
@@ -12,7 +15,7 @@ export default function BlogPage() {
       <section className="bg-[#1E0306] text-white py-16 px-4 md:px-8 text-center">
         <div className="mx-auto max-w-3xl space-y-3">
           <h1 className="text-3xl md:text-5xl font-black">
-            Prince of Forex <span className="text-[#ED3C52]">Blog</span>
+            New Forex Industry <span className="text-[#ED3C52]">Blog</span>
           </h1>
           <p className="text-xs md:text-sm text-rose-200/80 max-w-xl mx-auto">
             Market analysis breakdowns, price action guides, and risk management strategies.
@@ -29,7 +32,7 @@ export default function BlogPage() {
             >
               <div className="space-y-3">
                 <div className="h-10 w-10 rounded-xl bg-rose-50 text-[#ED3C52] flex items-center justify-center font-bold">
-                  <Crown className="h-5 w-5" />
+                  <TrendingUp className="h-5 w-5" />
                 </div>
 
                 <div className="flex items-center gap-3 text-[11px] text-slate-400">
@@ -52,7 +55,7 @@ export default function BlogPage() {
               </div>
 
               <Link
-                href="/courses/prince-of-forex-masterclass"
+                href={`/courses/${course.slug}`}
                 className="inline-flex items-center gap-1.5 text-xs font-bold text-[#ED3C52] hover:underline pt-2"
               >
                 Explore the Full Masterclass <ArrowRight className="h-3.5 w-3.5" />

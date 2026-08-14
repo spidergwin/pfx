@@ -4,7 +4,6 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { PFX_COURSE, PFX_REVIEWS, FAQ_ITEMS } from "@/lib/data";
 import {
-  Crown,
   Star,
   Users,
   CheckCircle,
@@ -18,6 +17,8 @@ import {
 } from "lucide-react";
 
 export default function HomePage() {
+  const course = PFX_COURSE;
+
   return (
     <div className="min-h-screen bg-white text-[#1E0306]">
       <Navbar />
@@ -26,30 +27,30 @@ export default function HomePage() {
       <section className="relative w-full bg-[#1E0306] text-white pt-14 pb-20 md:pt-24 md:pb-32 overflow-hidden">
         <div className="relative mx-auto max-w-5xl px-4 text-center md:px-8 space-y-6">
           <div className="inline-flex items-center gap-2 rounded-full bg-[#ED3C52]/20 px-4 py-1.5 text-xs font-extrabold uppercase tracking-widest text-[#ED3C52] border border-[#ED3C52]/30">
-            <Crown className="h-4 w-4 fill-amber-400 text-amber-400" />
-            Prince of Forex Official Masterclass
+            <TrendingUp className="h-4 w-4 text-[#ED3C52]" />
+            New Forex Industry Official Masterclass
           </div>
 
           <h1 className="text-3xl font-black leading-tight tracking-tight text-white md:text-6xl lg:text-7xl">
             Welcome to <br />
-            <span className="text-[#ED3C52]">Prince of Forex Academy!</span>
+            <span className="text-[#ED3C52]">New Forex Industry Academy!</span>
           </h1>
 
           <p className="mx-auto max-w-2xl text-sm leading-relaxed text-rose-100/90 md:text-lg">
-            Start your journey to mastering <strong className="text-white">Forex Trading</strong> with one of the best programs available. Go from a beginner to an advanced FX trader with the <strong className="text-white uppercase tracking-wider">PRINCE OF FOREX (PFX)</strong> masterclass. Enroll now to gain access to over 30 in-depth chapters explaining real-time market logic.
+            Start your journey to mastering <strong className="text-white">Forex Trading</strong> with one of the best programs available. Go from a beginner to an advanced FX trader with the <strong className="text-white uppercase tracking-wider">NEW FOREX INDUSTRY (NFI)</strong> masterclass. Enroll now to gain access to over 30 in-depth chapters explaining real-time market logic.
           </p>
 
           <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
-              href={`/courses/${PFX_COURSE.slug}/checkout`}
+              href={`/courses/${course.slug}/checkout`}
               className="w-full sm:w-auto flex items-center justify-center gap-2.5 rounded-2xl bg-[#ED3C52] hover:bg-rose-600 px-8 py-4 text-base font-extrabold text-white shadow-xl transition button-glow"
             >
-              Enroll Now ($40)
+              Enroll Now (${course.price.toFixed(0)})
               <ArrowRight className="h-5 w-5" />
             </Link>
 
             <Link
-              href={`/courses/${PFX_COURSE.slug}`}
+              href={`/courses/${course.slug}`}
               className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-2xl border-2 border-white/80 bg-transparent px-8 py-4 text-base font-bold text-white hover:bg-white/10 transition"
             >
               View Syllabus
@@ -78,12 +79,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* FEATURED COURSE CARD (matching course-page-design.png) */}
+      {/* FEATURED COURSE CARD */}
       <section className="mx-auto max-w-5xl px-4 md:px-8 -mt-10 relative z-20">
         <div className="rounded-3xl bg-white p-6 md:p-8 shadow-2xl border border-rose-100 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-4">
             <div className="h-16 w-16 shrink-0 rounded-2xl bg-[#1E0306] flex items-center justify-center text-amber-400 font-black text-2xl shadow-lg">
-              PFX
+              NFI
             </div>
             <div>
               <div className="flex items-center gap-2">
@@ -96,7 +97,7 @@ export default function HomePage() {
                 </span>
               </div>
               <h2 className="text-lg md:text-xl font-extrabold text-[#1E0306] mt-1">
-                {PFX_COURSE.title}
+                {course.title}
               </h2>
               <p className="text-xs text-slate-500 mt-0.5">
                 30 Chapters • 50 Quizzes • 2 Exams • 10 Hours Total
@@ -106,14 +107,14 @@ export default function HomePage() {
 
           <div className="flex items-center gap-4 w-full md:w-auto justify-between md:justify-end">
             <div>
-              <span className="text-2xl font-black text-[#ED3C52]">${PFX_COURSE.price.toFixed(2)}</span>
-              <span className="ml-2 text-sm text-slate-400 line-through">${PFX_COURSE.originalPrice.toFixed(2)}</span>
+              <span className="text-2xl font-black text-[#ED3C52]">${course.price.toFixed(2)}</span>
+              <span className="ml-2 text-sm text-slate-400 line-through">${course.originalPrice.toFixed(2)}</span>
             </div>
             <Link
-              href={`/courses/${PFX_COURSE.slug}/checkout`}
+              href={`/courses/${course.slug}/checkout`}
               className="rounded-xl bg-[#ED3C52] hover:bg-rose-600 px-6 py-3.5 text-xs font-bold text-white shadow-md transition button-glow"
             >
-              Buy Course Now
+              Enroll Now (${course.price.toFixed(0)})
             </Link>
           </div>
         </div>
@@ -133,17 +134,17 @@ export default function HomePage() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
           <div className="md:col-span-7 space-y-6 text-slate-600 text-sm md:text-base leading-relaxed">
             <p>
-              <strong className="text-[#ED3C52] font-black tracking-wider uppercase">PRINCE OF FOREX (PFX)</strong> is a professional trader and market strategist focused on replacing reckless market speculation with <strong>Real-Time Market Logic</strong> and institutional risk management.
+              <strong className="text-[#ED3C52] font-black tracking-wider uppercase">NEW FOREX INDUSTRY (NFI)</strong> is a professional trading brand and market strategy academy focused on replacing reckless speculation with <strong>Real-Time Market Logic</strong> and institutional risk management.
             </p>
             <p>
-              By mastering risk-to-reward ratios and candlestick price action, PFX helps students move past market intimidation to achieve long-term consistency in global currency trading.
+              By mastering risk-to-reward ratios and candlestick price action, NFI helps students move past market intimidation to achieve long-term consistency in global currency trading.
             </p>
             <div className="pt-2">
               <Link
-                href={`/courses/${PFX_COURSE.slug}/checkout`}
+                href={`/courses/${course.slug}/checkout`}
                 className="inline-flex items-center gap-2 rounded-xl bg-[#ED3C52] px-6 py-3 text-xs font-bold text-white button-glow"
               >
-                Enroll in Masterclass ($40)
+                Enroll in Masterclass (${course.price.toFixed(0)})
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
@@ -168,12 +169,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* WHY LEARN WITH PRINCE OF FOREX (3-Card Grid using Soft Pink #FDE9EC) */}
+      {/* WHY LEARN WITH NEW FOREX INDUSTRY */}
       <section className="py-20 bg-slate-50 border-y border-slate-200">
         <div className="mx-auto max-w-5xl px-4 md:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#1E0306]">
-              Learning with <span className="text-[#ED3C52]">Prince of Forex</span> Offers You
+              Learning with <span className="text-[#ED3C52]">New Forex Industry</span> Offers You
             </h2>
             <p className="text-xs text-slate-500 mt-2">
               Structured modules designed to build consistent forex market competence.
@@ -191,7 +192,7 @@ export default function HomePage() {
                   A robust curriculum covering everything from forex basics to advanced price action strategies.
                 </p>
               </div>
-              <Link href={`/courses/${PFX_COURSE.slug}`} className="inline-flex items-center gap-1 text-xs font-bold text-[#ED3C52] hover:underline">
+              <Link href={`/courses/${course.slug}`} className="inline-flex items-center gap-1 text-xs font-bold text-[#ED3C52] hover:underline">
                 Enroll now & get started <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
@@ -218,10 +219,10 @@ export default function HomePage() {
                 </div>
                 <h3 className="text-base font-bold text-[#1E0306]">Graduation Certificate</h3>
                 <p className="text-xs text-slate-600 leading-relaxed mt-1">
-                  Receive an official shareable PFX Certificate of Completion for your LinkedIn profile.
+                  Receive an official shareable NFI Certificate of Completion for your LinkedIn profile.
                 </p>
               </div>
-              <Link href={`/courses/${PFX_COURSE.slug}`} className="inline-flex items-center gap-1 text-xs font-bold text-[#ED3C52] hover:underline">
+              <Link href={`/courses/${course.slug}`} className="inline-flex items-center gap-1 text-xs font-bold text-[#ED3C52] hover:underline">
                 View Course Details <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>

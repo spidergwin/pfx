@@ -3,15 +3,17 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, ArrowRight, Crown } from "lucide-react";
+import { Menu, X, ArrowRight, TrendingUp } from "lucide-react";
+import { PFX_COURSE } from "@/lib/data";
 
 export function Navbar() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const course = PFX_COURSE;
 
   const navLinks = [
     { href: "/", label: "Home" },
-    { href: "/courses/prince-of-forex-masterclass", label: "Course Details" },
+    { href: `/courses/${course.slug}`, label: "Course Details" },
     { href: "/calculator", label: "Lotsize Calculator" },
     { href: "/blog", label: "Blog" },
     { href: "/faq", label: "FAQs" },
@@ -26,8 +28,8 @@ export function Navbar() {
             Special Offer
           </span>
           <span>
-            Get the <strong className="text-[#ED3C52]">Prince of Forex Masterclass</strong> for only{" "}
-            <strong className="text-white underline">$40.00</strong> (Limited time price discount)
+            Get the <strong className="text-[#ED3C52]">New Forex Industry Masterclass</strong> for only{" "}
+            <strong className="text-white underline">${course.price.toFixed(2)}</strong> (Limited time price discount)
           </span>
         </div>
       </div>
@@ -38,14 +40,14 @@ export function Navbar() {
           {/* Brand Logo */}
           <Link href="/" className="flex items-center gap-2.5 group">
             <div className="h-9 w-9 rounded-xl bg-[#1E0306] flex items-center justify-center text-[#ED3C52] shadow-md group-hover:scale-105 transition">
-              <Crown className="h-5 w-5 fill-[#ED3C52] text-[#ED3C52]" />
+              <TrendingUp className="h-5 w-5 text-[#ED3C52]" />
             </div>
             <div className="flex flex-col">
               <span className="text-base font-black tracking-tight text-[#1E0306] leading-none">
-                PRINCE OF FOREX
+                NEW FOREX INDUSTRY
               </span>
               <span className="text-[10px] font-bold tracking-widest text-[#ED3C52] uppercase">
-                PFX ACADEMY
+                NFI ACADEMY
               </span>
             </div>
           </Link>
@@ -71,10 +73,10 @@ export function Navbar() {
           {/* Right Action Button */}
           <div className="hidden lg:flex items-center gap-3">
             <Link
-              href="/courses/prince-of-forex-masterclass/checkout"
+              href={`/courses/${course.slug}/checkout`}
               className="flex items-center gap-2 rounded-xl bg-[#ED3C52] hover:bg-rose-600 px-5 py-2.5 text-xs font-bold text-white shadow-md transition button-glow"
             >
-              Enroll Now ($40)
+              Enroll Now (${course.price.toFixed(0)})
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -103,11 +105,11 @@ export function Navbar() {
             ))}
             <div className="pt-3 border-t border-slate-100">
               <Link
-                href="/courses/prince-of-forex-masterclass/checkout"
+                href={`/courses/${course.slug}/checkout`}
                 onClick={() => setMobileMenuOpen(false)}
                 className="w-full flex items-center justify-center gap-2 rounded-xl bg-[#ED3C52] py-3 text-xs font-bold text-white shadow-md"
               >
-                Enroll Now ($40)
+                Enroll Now (${course.price.toFixed(0)})
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>

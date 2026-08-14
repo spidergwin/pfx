@@ -13,7 +13,7 @@ export default function FAQPage() {
             Frequently Asked <span className="text-[#ED3C52]">Questions</span>
           </h1>
           <p className="text-xs md:text-sm text-rose-200/80 max-w-xl mx-auto">
-            Everything you need to know about the Prince of Forex (PFX) Masterclass, Paystack payments, and Lot Size Calculator.
+            Everything you need to know about the New Forex Industry (NFI) Masterclass, enrollment on WhatsApp, and Lot Size Calculator.
           </p>
         </div>
       </section>
