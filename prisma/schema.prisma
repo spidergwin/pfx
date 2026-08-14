@@ -1,0 +1,151 @@
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  STUDENT
+  ADMIN
+}
+
+enum OrderStatus {
+  PENDING
+  SUCCESS
+  FAILED
+}
+
+model User {
+  id            String       @id @default(cuid())
+  name          String
+  email         String       @unique
+  emailVerified Boolean      @default(false)
+  image         String?
+  role          Role         @default(STUDENT)
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  sessions      Session[]
+  accounts      Account[]
+  orders        Order[]
+  enrollments   Enrollment[]
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  expiresAt DateTime
+  token     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Account {
+  id                    String    @id @default(cuid())
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+}
+
+model Verification {
+  id         String    @id @default(cuid())
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime? @default(now())
+  updatedAt  DateTime? @updatedAt
+}
+
+model Course {
+  id             String       @id @default(cuid())
+  slug           String       @unique
+  title          String
+  subtitle       String?
+  description    String
+  price          Float
+  originalPrice  Float?
+  rating         Float        @default(4.9)
+  enrolledCount  Int          @default(5458)
+  durationHours  Float        @default(10)
+  totalChapters  Int          @default(30)
+  totalQuizzes   Int          @default(50)
+  bestseller     Boolean      @default(true)
+  imageUrl       String?
+  skillsGained   String[]
+  chapters       Chapter[]
+  enrollments    Enrollment[]
+  orders         Order[]
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+}
+
+model Chapter {
+  id         String   @id @default(cuid())
+  courseId   String
+  course     Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  title      String
+  orderIndex Int
+  lessons    Lesson[]
+}
+
+model Lesson {
+  id            String   @id @default(cuid())
+  chapterId     String
+  chapter       Chapter  @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  title         String
+  durationMins  Int
+  videoUrl      String?
+  isFreePreview Boolean  @default(false)
+  orderIndex    Int
+}
+
+model Order {
+  id             String      @id @default(cuid())
+  reference      String      @unique
+  userId         String
+  user           User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  courseId       String
+  course         Course      @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  customerEmail  String?     // stored for post-payment email delivery
+  amount         Float
+  discountAmount Float       @default(0)
+  status         OrderStatus @default(PENDING)
+  paymentMethod  String?     @default("paystack")
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+}
+
+model Enrollment {
+  id              String   @id @default(cuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  courseId        String
+  course          Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  progressPercent Float    @default(0)
+  createdAt       DateTime @default(now())
+
+  @@unique([userId, courseId])
+}
+
+model NewsletterSubscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  resendId  String?  // ID returned from Resend Audiences API
+  source    String   @default("checkout") // where they signed up: checkout, homepage, etc.
+  createdAt DateTime @default(now())
+}
