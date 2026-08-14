@@ -7,10 +7,11 @@ import { PFX_COURSE } from "@/lib/data";
 import {
   ArrowLeft,
   CheckCircle,
-  CreditCard,
-  Loader2,
-  ShieldCheck,
+  MessageCircle,
   Mail,
+  User,
+  ShieldCheck,
+  Sparkles,
 } from "lucide-react";
 
 export default function CheckoutPage() {
@@ -19,45 +20,36 @@ export default function CheckoutPage() {
   const slug = (params?.slug as string) || "prince-of-forex-masterclass";
   const course = PFX_COURSE;
 
+  const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
-  const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const handlePaystackCheckout = async (e: React.FormEvent) => {
+  const WHATSAPP_NUMBER = "2348165127497";
+
+  const handleWhatsAppCheckout = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) {
-      setErrorMessage("Please enter your email address to receive course delivery");
+    if (!email || !email.includes("@")) {
+      setErrorMessage("Please enter a valid email address.");
       return;
     }
-    setLoading(true);
+
     setErrorMessage(null);
 
-    try {
-      const res = await fetch("/api/paystack/initialize", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          courseId: course.id,
-          email,
-        }),
-      });
+    const message = encodeURIComponent(
+      `Hello Prince of Forex (PFX) Academy! 👋\n\n` +
+      `I would like to enroll in the *${course.title}*.\n\n` +
+      `📌 *Order Details:*\n` +
+      `• *Course:* ${course.title}\n` +
+      `• *Price:* $${course.price.toFixed(2)}\n` +
+      (fullName.trim() ? `• *Full Name:* ${fullName.trim()}\n` : "") +
+      `• *Email:* ${email.trim()}\n\n` +
+      `Please provide the payment details so I can complete my enrollment and receive access.`
+    );
 
-      const data = await res.json();
-      if (!res.ok || data.error) {
-        setErrorMessage(data.error || "Failed to initialize Paystack checkout");
-        setLoading(false);
-        return;
-      }
+    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
 
-      if (data.authorization_url) {
-        window.location.href = data.authorization_url;
-      } else {
-        router.push(`/courses/${course.slug}/confirmation?reference=${data.reference}&email=${encodeURIComponent(email)}`);
-      }
-    } catch (err: any) {
-      setErrorMessage(err.message || "An unexpected error occurred during checkout");
-      setLoading(false);
-    }
+    // Open WhatsApp in new tab or direct window
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -70,10 +62,11 @@ export default function CheckoutPage() {
             className="flex items-center gap-2 text-sm font-bold text-[#1E0306] hover:text-[#ED3C52] transition"
           >
             <ArrowLeft className="h-5 w-5" />
-            Checkout
+            Back to Course
           </Link>
-          <span className="text-xs font-bold text-[#ED3C52] uppercase tracking-wider">
-            Paystack Payment Gateway
+          <span className="text-xs font-bold text-[#ED3C52] uppercase tracking-wider flex items-center gap-1.5">
+            <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            Direct WhatsApp Enrollment
           </span>
         </div>
       </header>
@@ -91,31 +84,55 @@ export default function CheckoutPage() {
               <span className="text-slate-400 line-through text-[11px] font-normal">
                 ${course.originalPrice.toFixed(2)}
               </span>
+              <span className="rounded bg-rose-100 px-1.5 py-0.5 text-[10px] text-[#ED3C52] font-bold">
+                Save ${(course.originalPrice - course.price).toFixed(2)}
+              </span>
             </div>
           </div>
         </div>
 
-        {/* Checkout Form */}
-        <form onSubmit={handlePaystackCheckout} className="space-y-6">
-          {/* Email Address Input */}
-          <div className="rounded-2xl bg-white p-5 shadow-sm border border-slate-200 space-y-2">
-            <label className="block text-xs font-bold uppercase tracking-wider text-[#1E0306]">
-              Your Email Address for Course Delivery
-            </label>
-            <div className="relative">
-              <Mail className="absolute left-3.5 top-3 h-4 w-4 text-slate-400" />
-              <input
-                type="email"
-                required
-                placeholder="student@princeofforex.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full rounded-xl border border-slate-200 pl-10 pr-4 py-2.5 text-sm focus:border-[#ED3C52] focus:outline-none"
-              />
+        {/* Enrollment Form */}
+        <form onSubmit={handleWhatsAppCheckout} className="space-y-6">
+          <div className="rounded-2xl bg-white p-5 shadow-sm border border-slate-200 space-y-4">
+            <h3 className="text-sm font-bold text-[#1E0306]">Student Information</h3>
+
+            {/* Full Name Input (Optional) */}
+            <div className="space-y-1.5">
+              <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
+                Full Name (Optional)
+              </label>
+              <div className="relative">
+                <User className="absolute left-3.5 top-3 h-4 w-4 text-slate-400" />
+                <input
+                  type="text"
+                  placeholder="e.g. Prince / Alex Vance"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  className="w-full rounded-xl border border-slate-200 pl-10 pr-4 py-2.5 text-sm focus:border-[#ED3C52] focus:outline-none"
+                />
+              </div>
             </div>
-            <p className="text-[11px] text-slate-500 pt-1 leading-relaxed">
-              The course will be delivered directly to your email address upon purchase completion.
-            </p>
+
+            {/* Email Address Input (Required) */}
+            <div className="space-y-1.5">
+              <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
+                Email Address <span className="text-rose-500">*</span>
+              </label>
+              <div className="relative">
+                <Mail className="absolute left-3.5 top-3 h-4 w-4 text-slate-400" />
+                <input
+                  type="email"
+                  required
+                  placeholder="student@princeofforex.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full rounded-xl border border-slate-200 pl-10 pr-4 py-2.5 text-sm focus:border-[#ED3C52] focus:outline-none"
+                />
+              </div>
+              <p className="text-[11px] text-slate-500 pt-0.5 leading-relaxed">
+                Your course materials and lifetime access details will be sent to this email.
+              </p>
+            </div>
           </div>
 
           {/* Order Summary Card */}
@@ -137,23 +154,32 @@ export default function CheckoutPage() {
             </div>
           </div>
 
+          {/* WhatsApp Direct Notice Card */}
+          <div className="rounded-2xl bg-emerald-50 p-4 border border-emerald-200 flex items-start gap-3">
+            <div className="h-8 w-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 mt-0.5">
+              <MessageCircle className="h-4 w-4" />
+            </div>
+            <div className="text-xs text-emerald-950 space-y-1 leading-relaxed">
+              <p className="font-bold">Instant WhatsApp Support &amp; Verification</p>
+              <p className="text-[11px] text-emerald-800">
+                Clicking the button below opens an official chat with <strong>Prince of Forex (+2348165127497)</strong> to complete payment via your preferred method and get immediate course access.
+              </p>
+            </div>
+          </div>
+
           {errorMessage && (
             <div className="rounded-xl bg-rose-50 p-3 text-xs font-semibold text-rose-600 border border-rose-200">
               {errorMessage}
             </div>
           )}
 
-          {/* Paystack Primary Button */}
+          {/* WhatsApp Primary Button */}
           <button
             type="submit"
-            disabled={loading}
-            className="w-full flex items-center justify-center gap-2 rounded-2xl bg-[#ED3C52] hover:bg-rose-600 py-4 text-base font-extrabold text-white button-glow transition disabled:opacity-50"
+            className="w-full flex items-center justify-center gap-2.5 rounded-2xl bg-[#25D366] hover:bg-emerald-600 py-4 text-base font-extrabold text-white shadow-xl shadow-emerald-500/20 transition button-glow"
           >
-            {loading ? (
-              <Loader2 className="h-5 w-5 animate-spin" />
-            ) : (
-              <>Proceed to Paystack • ${course.price.toFixed(2)}</>
-            )}
+            <MessageCircle className="h-5 w-5 fill-white" />
+            Complete Enrollment on WhatsApp • ${course.price.toFixed(2)}
           </button>
         </form>
       </main>
